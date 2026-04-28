@@ -1,0 +1,297 @@
+evolving-ascii-chess — Build Plan
+
+Goal
+- Build a terminal-native demo where Kimi (or another no-tools LLM endpoint) plays chess against a traditional chess engine.
+- The demo must be visually strong enough to screen-record and turn into the final competition creativity submission.
+- Final deliverable is not just a chess program; it is a cinematic terminal performance that ends as a polished recorded video.
+
+Core creative thesis
+- "Raw language intelligence enters the arena against classical search."
+- The terminal is the stage, not just a debug surface.
+- The system should feel like a live duel:
+  - dramatic title cards
+  - animated ASCII board
+  - impact/explosion effects on captures
+  - visible tension around checks, blunders, sacrifices, and mates
+  - a coherent retro / pixel-native visual language throughout
+
+Non-negotiables
+- Kimi / the LLM chess brain gets no tool calling and no hidden engine help.
+- The classical side is a real engine (Stockfish or similar).
+- The piece must be recordable cleanly from the terminal.
+- The final competition submission should be a video, even if the source experience is terminal-first.
+
+System architecture
+1. Match orchestration layer
+   - Owns board state, turn-taking, legality, move history, clocks/turn status, and result detection.
+   - Never trusts any player source directly; every proposed move is validated here.
+   - Input: a white-side player adapter and a black-side player adapter.
+   - Output: structured match events.
+
+2. Player-side interfaces (two seats, one contract)
+   - The system always has two player seats:
+     - White-side player interface
+     - Black-side player interface
+   - Each seat can be backed by one of three participant types:
+     - AI / LLM
+     - Chess engine
+     - Human
+   - Every participant implements the same contract:
+     - receive current board state / FEN / move history / side to move
+     - receive last move details from the controller
+     - propose exactly one move
+     - return raw output plus parsed candidate move
+   - This unifies all match modes under one game loop.
+
+3. Game/controller interface
+   - Mandatory central authority inside the ASCII chess system between any player and the board state.
+   - Important distinction:
+     - this is not Stockfish in the middle
+     - this is the system/referee/controller interface
+     - Stockfish is only one possible player adapter
+   - Responsibilities:
+     - parse SAN/UCI/human input into a move candidate
+     - confirm move is legal on the current board
+     - reject or repair invalid moves
+     - preserve a canonical move log
+     - keep full board state history for replay / rendering / commentary
+     - send the full updated board plus last-move details to the next player
+   - AI-only touch-move rule for this project:
+     - touch enforcement applies only to AI players, not humans
+     - if an AI proposes an illegal move but clearly identifies a source piece/square, that counts as having touched that piece
+     - if that piece has one or more legal moves, the retry is constrained to legal moves by that same piece only
+     - if that piece has no legal move, normal unconstrained retry applies
+     - if the proposal is too malformed to recover a source piece, normal unconstrained retry applies
+   - Human rule for this project:
+     - humans still must make legal moves
+     - but humans do not inherit AI touch-move enforcement unless a future strict tournament mode is added
+
+4. Audience/show interface
+   - Separate interface for the audience experience.
+   - This is not just raw board ASCII.
+   - Responsibilities:
+     - render the colourful dramatic board state
+     - animate moves, captures, checks, mates, retries, and title moments
+     - display telemetry, player identity, and current momentum
+     - run announcer/commentary output
+     - synthesize local TTS commentary and present the match as a show
+   - This is the presentation layer that turns the game into a competition-ready video experience.
+
+4. Chess brain adapters
+   - LLM adapter:
+     - prompt with FEN + move history + legal move context
+     - extract one move only
+     - validate locally through the arbitration layer
+     - reprompt/retry on bad output
+   - Engine adapter:
+     - UCI engine wrapper (Stockfish or similar)
+   - Human adapter:
+     - terminal input / prompt-based move entry
+     - same legality check path as every other player
+
+5. Supported match modes
+   - Mode A: AI vs traditional engine
+     - LLM adapter vs engine adapter
+   - Mode B: AI vs AI
+     - LLM adapter vs LLM adapter
+     - both sides must pass through the same legality/arbitration layer
+   - Mode C: Human vs AI
+     - human adapter vs LLM adapter (or engine adapter)
+     - human input still goes through the same validator and event stream
+   - Important design rule:
+     - match mode should be a configuration choice, not a separate code path.
+
+6. Event stream / scene system
+   - Convert match events into cinematic moments:
+     - move proposed
+     - move accepted
+     - invalid move / retry
+     - move land
+     - capture
+     - check
+     - checkmate
+     - blunder / swing
+     - opening name / transition cards
+   - This layer is what turns chess into showmanship.
+
+7. Terminal renderer
+   - Rich/curses-style live renderer
+   - Multiple visual zones:
+     - main board
+     - move ticker
+     - player identity / telemetry
+     - commentary / narration strip
+     - dramatic event banners
+     - input/status area for human-play mode
+   - Should support animation timelines, not just static redraws.
+
+8. Recording / export layer
+   - Run the terminal app at stable dimensions and cadence.
+   - Record output cleanly.
+   - Optionally composite extra intro/outro/title material later.
+
+High-level milestones
+
+Milestone 1 — Functional duel pipeline
+Status: started
+Goal:
+- A real playable terminal demo where a mock LLM or real Kimi endpoint can play Stockfish.
+Success criteria:
+- legal move generation
+- stable turn loop
+- visible board redraws
+- basic move animation
+- basic capture explosion
+- replayable live demo
+Current state:
+- scaffold exists and runs
+- Stockfish installed
+- mock/random mode works
+- Kimi-compatible adapter now has strict SAN extraction, UCI fallback, retry/repair budget, timeout control, raw-output logging, and AI-only touch-move constrained retries
+- renderer now consumes a lightweight event stream for move/capture/check/checkmate moments
+
+Milestone 2 — Real Kimi match reliability
+Goal:
+- Make the LLM side trustworthy enough for repeated demo runs.
+Tasks:
+- add retry loop for malformed LLM outputs
+- support strict SAN-only extraction
+- optionally allow UCI extraction fallback if SAN fails
+- add timeout/retry budget
+- log raw LLM outputs for debugging
+- optionally add a "thinking" text channel separate from move channel
+Success criteria:
+- repeated games can complete without manual babysitting
+- invalid outputs do not crash the show
+- the LLM remains no-tools and fair
+
+Milestone 3 — Event-driven spectacle system
+Goal:
+- Make the match feel dramatic in the terminal.
+Tasks:
+- define event types: move, capture, check, mate, castle, promotion, blunder, eval swing
+- add animation presets per event
+- upgrade capture explosion into layered effect:
+  - flash
+  - shockwave
+  - debris / sparks
+  - aftermath frame
+- add check warning mode
+- add checkmate end-card mode
+- add title splash and player-versus-player intro
+Success criteria:
+- a random 20-second screen recording already feels deliberate and artistic
+
+Milestone 4 — Pixel-native art direction
+Goal:
+- Push the visuals from generic ASCII to a consistent retro/pixel-native identity.
+Tasks:
+- choose one visual language for the whole piece:
+  - CRT green terminal
+  - amber phosphor
+  - PICO-8-like limited palette in terminal colors
+  - synthwave/noir retro command-center
+- redesign board glyphs and UI chrome accordingly
+- create custom text treatments for:
+  - captures
+  - checks
+  - sacrifices
+  - mates
+- make the whole thing feel authored, not like a technical demo
+Success criteria:
+- screenshots look like a real creative piece, not just a chess TUI
+
+Milestone 5 — Commentary / narrative layer
+Goal:
+- Turn the match into a story for viewers who do not play competitive chess.
+- Commentary style should feel more like a live horse-race / football call than dry chess annotation.
+- Commentary should be speakable through a fully local/offline TTS path.
+Options:
+- minimal mode: only move names + occasional banners
+- medium mode: brief one-line commentary after key events
+- full mode: dual-channel show with event narration and player identity
+Recommendation:
+- medium mode first
+Tasks:
+- detect key tactical moments
+- generate short high-energy commentary lines
+- keep commentary separate from move generation to preserve fairness
+- maintain a distinct commentary prompt/style guide so the commentator feels like a live hype caster, not an analyst bot
+- synthesize lines through local Piper TTS
+- use text shaping plus local audio post-processing to increase excitement (shorter phrases, emphatic punctuation, optional ffmpeg speed/pitch treatment)
+Success criteria:
+- viewers can follow the drama without understanding every move
+- the commentary adds excitement and momentum instead of sounding flat or academic
+- the full narration path runs locally without requiring a cloud TTS provider
+
+Milestone 6 — Recording and submission pipeline
+Goal:
+- Produce a clean final video for the competition.
+Tasks:
+- lock terminal size and color profile
+- choose recording method
+- choose one or more curated match scripts / seeds
+- produce intro and outro text
+- export a final recording with best run selected
+Optional later:
+- add post-production overlays or audio if allowed and valuable
+Success criteria:
+- one clean final video file suitable for submission
+
+Recommended near-term execution order
+1. Harden real Kimi adapter
+2. Add event bus / structured match events
+3. Upgrade capture/check/mate animations
+4. Add title card + player identity intro
+5. Add lightweight commentary layer
+6. Test record the terminal
+7. Produce first "looks good on camera" demo cut
+
+Fairness / benchmark framing
+- The real point is not "can an LLM beat Stockfish" in absolute terms.
+- The point is to showcase no-tools reasoning and personality under pressure.
+- Good framing for the final piece:
+  - Kimi as intuitive strategist / improviser
+  - Stockfish as cold search machine
+- Stronger video may come from a curated match format, for example:
+  - opening challenge
+  - puzzle-like tactical duel
+  - limited-time move budget
+  - thematic opening chosen for spectacle
+
+Potential competition-ready formats
+A. Pure duel
+- Kimi vs Stockfish from the start position
+- simplest and cleanest
+
+B. Curated opening duel
+- start from a chosen opening line to reach a sharp middlegame quickly
+- better for spectacle and shorter runtime
+
+C. Multi-round montage
+- several short games / positions
+- strongest for a final video edit
+- likely best submission format later
+
+Recommendation
+- Build the system assuming format C is the final submission target
+- But develop using format A first, because it is simplest to validate
+
+Concrete next tasks to implement
+1. Split the single-file prototype into clear modules once the demo behavior stabilizes:
+   - match/controller
+   - player adapters
+   - renderer/show layer
+   - event/replay schema
+2. Make event history serializable for replay and later video packaging
+3. Create three stronger animation packages:
+   - move glide
+   - layered capture explosion
+   - check/checkmate alarm
+4. Add lightweight commentary lines and optional Piper TTS playback
+5. Run and record the first real Kimi-vs-Stockfish demo
+
+Project notes
+- Global deferred note recorded separately at:
+  /home/evosoft/Projects/_global_todo.txt
+- Hermes update is explicitly deferred and not blocking current chess work

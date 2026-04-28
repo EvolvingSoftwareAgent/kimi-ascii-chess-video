@@ -1,0 +1,787 @@
+{
+  "schema_version": 1,
+  "concept": "game-style reusable chess commentary samples",
+  "assembly_examples": [
+    [
+      "black_possessive",
+      "phrases/knight/phrase_000.ogg"
+    ],
+    [
+      "white_possessive",
+      "phrases/queen/phrase_052.ogg"
+    ]
+  ],
+  "pieces": [
+    "pawn",
+    "knight",
+    "bishop",
+    "rook",
+    "queen",
+    "king"
+  ],
+  "sample_count_if_expanded": 608,
+  "samples": [
+    {
+      "id": "white_possessive",
+      "text": "White's",
+      "category": "side_prefix",
+      "role": "atom",
+      "path": "atoms/white_possessive.ogg"
+    },
+    {
+      "id": "black_possessive",
+      "text": "Black's",
+      "category": "side_prefix",
+      "role": "atom",
+      "path": "atoms/black_possessive.ogg"
+    },
+    {
+      "id": "piece_pawn",
+      "text": "pawn",
+      "category": "piece_atom",
+      "role": "atom",
+      "piece": "pawn",
+      "path": "atoms/piece_pawn.ogg"
+    },
+    {
+      "id": "piece_knight",
+      "text": "knight",
+      "category": "piece_atom",
+      "role": "atom",
+      "piece": "knight",
+      "path": "atoms/piece_knight.ogg"
+    },
+    {
+      "id": "piece_bishop",
+      "text": "bishop",
+      "category": "piece_atom",
+      "role": "atom",
+      "piece": "bishop",
+      "path": "atoms/piece_bishop.ogg"
+    },
+    {
+      "id": "piece_rook",
+      "text": "rook",
+      "category": "piece_atom",
+      "role": "atom",
+      "piece": "rook",
+      "path": "atoms/piece_rook.ogg"
+    },
+    {
+      "id": "piece_queen",
+      "text": "queen",
+      "category": "piece_atom",
+      "role": "atom",
+      "piece": "queen",
+      "path": "atoms/piece_queen.ogg"
+    },
+    {
+      "id": "piece_king",
+      "text": "king",
+      "category": "piece_atom",
+      "role": "atom",
+      "piece": "king",
+      "path": "atoms/piece_king.ogg"
+    },
+    {
+      "id": "phrase_000",
+      "template": "{piece} goes in for a kill and leaves itself in a precarious position.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_000.ogg"
+    },
+    {
+      "id": "phrase_001",
+      "template": "{piece} cuts through the grid and dares the reply.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_001.ogg"
+    },
+    {
+      "id": "phrase_002",
+      "template": "{piece} steps into danger, but the pressure lands first.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_002.ogg"
+    },
+    {
+      "id": "phrase_003",
+      "template": "{piece} takes the hit square and makes the board answer.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_003.ogg"
+    },
+    {
+      "id": "phrase_004",
+      "template": "{piece} moves like bait with teeth.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_004.ogg"
+    },
+    {
+      "id": "phrase_005",
+      "template": "{piece} enters the lane and the whole position tightens.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_005.ogg"
+    },
+    {
+      "id": "phrase_006",
+      "template": "{piece} finds contact and turns silence into alarm.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_006.ogg"
+    },
+    {
+      "id": "phrase_007",
+      "template": "{piece} crosses the line and the arena flares.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_007.ogg"
+    },
+    {
+      "id": "phrase_008",
+      "template": "{piece} commits forward; retreat is no longer the story.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_008.ogg"
+    },
+    {
+      "id": "phrase_009",
+      "template": "{piece} makes the capture feel personal.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_009.ogg"
+    },
+    {
+      "id": "phrase_010",
+      "template": "{piece} attacks low and changes the value of the room.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_010.ogg"
+    },
+    {
+      "id": "phrase_011",
+      "template": "{piece} lands on a square that suddenly matters.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_011.ogg"
+    },
+    {
+      "id": "phrase_012",
+      "template": "{piece} drags the fight into the open.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_012.ogg"
+    },
+    {
+      "id": "phrase_013",
+      "template": "{piece} applies pressure where the king can hear it.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_013.ogg"
+    },
+    {
+      "id": "phrase_014",
+      "template": "{piece} takes space and leaves a question behind.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_014.ogg"
+    },
+    {
+      "id": "phrase_015",
+      "template": "{piece} becomes the problem the engine has to solve.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_015.ogg"
+    },
+    {
+      "id": "phrase_016",
+      "template": "{piece} makes a quiet move with loud consequences.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_016.ogg"
+    },
+    {
+      "id": "phrase_017",
+      "template": "{piece} breaks the pattern and the board starts blinking.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_017.ogg"
+    },
+    {
+      "id": "phrase_018",
+      "template": "{piece} turns a normal square into a threat marker.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_018.ogg"
+    },
+    {
+      "id": "phrase_019",
+      "template": "{piece} does not ask permission; it enters.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_019.ogg"
+    },
+    {
+      "id": "phrase_020",
+      "template": "{piece} starts a small fire on the far side of the board.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_020.ogg"
+    },
+    {
+      "id": "phrase_021",
+      "template": "{piece} leans into the tactic before it is safe.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_021.ogg"
+    },
+    {
+      "id": "phrase_022",
+      "template": "{piece} forces the camera to follow.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_022.ogg"
+    },
+    {
+      "id": "phrase_023",
+      "template": "{piece} trades comfort for initiative.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_023.ogg"
+    },
+    {
+      "id": "phrase_024",
+      "template": "{piece} grabs material and invites trouble.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_024.ogg"
+    },
+    {
+      "id": "phrase_025",
+      "template": "{piece} makes the opponent count every escape route.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_025.ogg"
+    },
+    {
+      "id": "phrase_026",
+      "template": "{piece} opens a corridor that did not exist a move ago.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_026.ogg"
+    },
+    {
+      "id": "phrase_027",
+      "template": "{piece} plants itself where calculation gets expensive.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_027.ogg"
+    },
+    {
+      "id": "phrase_028",
+      "template": "{piece} turns the corner and finds impact.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_028.ogg"
+    },
+    {
+      "id": "phrase_029",
+      "template": "{piece} makes the position feel less stable.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_029.ogg"
+    },
+    {
+      "id": "phrase_030",
+      "template": "{piece} walks into the storm with a knife out.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_030.ogg"
+    },
+    {
+      "id": "phrase_031",
+      "template": "{piece} converts tension into contact.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_031.ogg"
+    },
+    {
+      "id": "phrase_032",
+      "template": "{piece} shifts the tempo and the map redraws itself.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_032.ogg"
+    },
+    {
+      "id": "phrase_033",
+      "template": "{piece} takes the dangerous square because danger is the point.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_033.ogg"
+    },
+    {
+      "id": "phrase_034",
+      "template": "{piece} puts a red light on the king's neighborhood.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_034.ogg"
+    },
+    {
+      "id": "phrase_035",
+      "template": "{piece} gets active and the board stops being polite.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_035.ogg"
+    },
+    {
+      "id": "phrase_036",
+      "template": "{piece} makes a move that looks small until it echoes.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_036.ogg"
+    },
+    {
+      "id": "phrase_037",
+      "template": "{piece} finds the loose thread and pulls.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_037.ogg"
+    },
+    {
+      "id": "phrase_038",
+      "template": "{piece} steps into the highlight frame.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_038.ogg"
+    },
+    {
+      "id": "phrase_039",
+      "template": "{piece} becomes the weapon and the warning.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_039.ogg"
+    },
+    {
+      "id": "phrase_040",
+      "template": "{piece} hits the square like a dropped match.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_040.ogg"
+    },
+    {
+      "id": "phrase_041",
+      "template": "{piece} changes lanes and the defense loses shape.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_041.ogg"
+    },
+    {
+      "id": "phrase_042",
+      "template": "{piece} turns pressure into a visible wound.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_042.ogg"
+    },
+    {
+      "id": "phrase_043",
+      "template": "{piece} asks a question the opponent cannot ignore.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_043.ogg"
+    },
+    {
+      "id": "phrase_044",
+      "template": "{piece} moves with just enough chaos to matter.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_044.ogg"
+    },
+    {
+      "id": "phrase_045",
+      "template": "{piece} takes the long road to a short threat.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_045.ogg"
+    },
+    {
+      "id": "phrase_046",
+      "template": "{piece} enters the engine room and starts pulling cables.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_046.ogg"
+    },
+    {
+      "id": "phrase_047",
+      "template": "{piece} makes the next capture feel inevitable.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_047.ogg"
+    },
+    {
+      "id": "phrase_048",
+      "template": "{piece} throws a shadow across the back rank.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_048.ogg"
+    },
+    {
+      "id": "phrase_049",
+      "template": "{piece} carries the attack one square deeper.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_049.ogg"
+    },
+    {
+      "id": "phrase_050",
+      "template": "{piece} finds a seam and pushes through it.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_050.ogg"
+    },
+    {
+      "id": "phrase_051",
+      "template": "{piece} adds weight to a file that was already groaning.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_051.ogg"
+    },
+    {
+      "id": "phrase_052",
+      "template": "{piece} becomes a siren pointed at the king.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_052.ogg"
+    },
+    {
+      "id": "phrase_053",
+      "template": "{piece} leaves safety behind and buys initiative.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_053.ogg"
+    },
+    {
+      "id": "phrase_054",
+      "template": "{piece} moves with the confidence of a loaded trap.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_054.ogg"
+    },
+    {
+      "id": "phrase_055",
+      "template": "{piece} turns the board into a smaller place.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_055.ogg"
+    },
+    {
+      "id": "phrase_056",
+      "template": "{piece} cuts off a route before anyone names it.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_056.ogg"
+    },
+    {
+      "id": "phrase_057",
+      "template": "{piece} puts pressure on the position's weakest nerve.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_057.ogg"
+    },
+    {
+      "id": "phrase_058",
+      "template": "{piece} finds a tactical pocket and climbs inside.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_058.ogg"
+    },
+    {
+      "id": "phrase_059",
+      "template": "{piece} makes the defense choose what to abandon.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_059.ogg"
+    },
+    {
+      "id": "phrase_060",
+      "template": "{piece} turns a developing move into a warning shot.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_060.ogg"
+    },
+    {
+      "id": "phrase_061",
+      "template": "{piece} takes a square and taxes every reply.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_061.ogg"
+    },
+    {
+      "id": "phrase_062",
+      "template": "{piece} moves first; the explanation arrives later.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_062.ogg"
+    },
+    {
+      "id": "phrase_063",
+      "template": "{piece} starts the countdown on the wrong side of the board.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_063.ogg"
+    },
+    {
+      "id": "phrase_064",
+      "template": "{piece} makes the center feel radioactive.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_064.ogg"
+    },
+    {
+      "id": "phrase_065",
+      "template": "{piece} slips past the front line and changes the weather.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_065.ogg"
+    },
+    {
+      "id": "phrase_066",
+      "template": "{piece} converts a loose square into a crime scene.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_066.ogg"
+    },
+    {
+      "id": "phrase_067",
+      "template": "{piece} makes the opponent defend with both hands.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_067.ogg"
+    },
+    {
+      "id": "phrase_068",
+      "template": "{piece} reaches the danger zone and refuses to blink.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_068.ogg"
+    },
+    {
+      "id": "phrase_069",
+      "template": "{piece} turns initiative into a physical object.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_069.ogg"
+    },
+    {
+      "id": "phrase_070",
+      "template": "{piece} advances like the tactic already happened.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_070.ogg"
+    },
+    {
+      "id": "phrase_071",
+      "template": "{piece} hits the board and the silence breaks.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_071.ogg"
+    },
+    {
+      "id": "phrase_072",
+      "template": "{piece} makes the whole position lean sideways.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_072.ogg"
+    },
+    {
+      "id": "phrase_073",
+      "template": "{piece} carries threat energy into a quiet square.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_073.ogg"
+    },
+    {
+      "id": "phrase_074",
+      "template": "{piece} goes hunting and leaves fingerprints.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_074.ogg"
+    },
+    {
+      "id": "phrase_075",
+      "template": "{piece} makes a capture line glow before the capture comes.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_075.ogg"
+    },
+    {
+      "id": "phrase_076",
+      "template": "{piece} turns defense into damage control.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_076.ogg"
+    },
+    {
+      "id": "phrase_077",
+      "template": "{piece} gives the attack a new address.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_077.ogg"
+    },
+    {
+      "id": "phrase_078",
+      "template": "{piece} moves like a glitch in the search tree.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_078.ogg"
+    },
+    {
+      "id": "phrase_079",
+      "template": "{piece} finds the one square that makes the board nervous.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_079.ogg"
+    },
+    {
+      "id": "phrase_080",
+      "template": "{piece} makes material count less than momentum.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_080.ogg"
+    },
+    {
+      "id": "phrase_081",
+      "template": "{piece} takes the square and dares the recapture.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_081.ogg"
+    },
+    {
+      "id": "phrase_082",
+      "template": "{piece} walks into contact and comes out louder.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_082.ogg"
+    },
+    {
+      "id": "phrase_083",
+      "template": "{piece} tightens the net one file at a time.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_083.ogg"
+    },
+    {
+      "id": "phrase_084",
+      "template": "{piece} makes the back rank feel watched.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_084.ogg"
+    },
+    {
+      "id": "phrase_085",
+      "template": "{piece} carries a threat the board cannot hide.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_085.ogg"
+    },
+    {
+      "id": "phrase_086",
+      "template": "{piece} turns a legal move into a cinematic problem.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_086.ogg"
+    },
+    {
+      "id": "phrase_087",
+      "template": "{piece} finds the lever and pulls the position open.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_087.ogg"
+    },
+    {
+      "id": "phrase_088",
+      "template": "{piece} makes the engine spend time it wanted to save.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_088.ogg"
+    },
+    {
+      "id": "phrase_089",
+      "template": "{piece} lands where the defender least wants a witness.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_089.ogg"
+    },
+    {
+      "id": "phrase_090",
+      "template": "{piece} bends the tempo until something cracks.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_090.ogg"
+    },
+    {
+      "id": "phrase_091",
+      "template": "{piece} enters the pocket between courage and mistake.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_091.ogg"
+    },
+    {
+      "id": "phrase_092",
+      "template": "{piece} forces the next move to explain itself.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_092.ogg"
+    },
+    {
+      "id": "phrase_093",
+      "template": "{piece} makes pressure visible.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_093.ogg"
+    },
+    {
+      "id": "phrase_094",
+      "template": "{piece} brings the attack into speaking distance.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_094.ogg"
+    },
+    {
+      "id": "phrase_095",
+      "template": "{piece} turns the board state into a chase scene.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_095.ogg"
+    },
+    {
+      "id": "phrase_096",
+      "template": "{piece} steps forward and the safe squares shrink.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_096.ogg"
+    },
+    {
+      "id": "phrase_097",
+      "template": "{piece} makes the tactic look inevitable in hindsight.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_097.ogg"
+    },
+    {
+      "id": "phrase_098",
+      "template": "{piece} takes the initiative and leaves the receipt burning.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_098.ogg"
+    },
+    {
+      "id": "phrase_099",
+      "template": "{piece} moves like it has already seen the ending.",
+      "category": "commentary_phrase_template",
+      "role": "template",
+      "path_template": "phrases/{piece}/phrase_099.ogg"
+    }
+  ]
+}

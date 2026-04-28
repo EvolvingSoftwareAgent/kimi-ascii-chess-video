@@ -1,0 +1,22 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Generated media and model assets
+outputs/
+assets/voice_bank/generated/
+assets/voices/
+*.mp4
+*.wav
+*.mp3
+*.ogg
+*.m4a
+*.aac
+*.onnx
+
+# Local files
+*.tmp
+.DS_Store
