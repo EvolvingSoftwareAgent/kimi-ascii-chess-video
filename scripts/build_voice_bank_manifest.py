@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a game-style reusable voice sample manifest for evolving-ascii-chess.
+"""Build a game-style reusable voice sample manifest for Chess Arena.
 
 The manifest separates short announcer atoms ("White's", "Black's") from reusable
 piece-action lines ("knight goes in for a kill..."). That lets the renderer stitch

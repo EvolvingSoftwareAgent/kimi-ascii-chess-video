@@ -1,10 +1,10 @@
 # Chess Arena
 
-A cinematic ASCII-system benchmark for LLM chess: model move proposals, central legality arbitration, generated narration, synthetic music, and an automated video pipeline orchestrated through Hermes.
+A cinematic LLM chess benchmark: model move proposals, central legality arbitration, generated narration, synthetic music, and an automated video pipeline orchestrated through Hermes.
 
 Read the full project page:
 
-- [Chess Arena: An ASCII-System Benchmark for LLM Chess](docs/chess-arena.md)
+- [Chess Arena: A Cinematic LLM Chess Benchmark](docs/chess-arena.md)
 
 The system turns a complete chess game into a visual benchmark. Player adapters propose moves, the central referee validates legality, structured events drive a speed-ramped renderer, and the final MP4 is assembled with generated commentary and music.
 

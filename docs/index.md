@@ -1,6 +1,6 @@
-# Chess Arena: An ASCII-System Benchmark for LLM Chess
+# Chess Arena: A Cinematic LLM Chess Benchmark
 
-Chess Arena is a cinematic AI experiment: a full chess game rendered as a neon terminal battle, with language-model move proposals, a central legality referee, generated commentary, synthetic music, and an automated video pipeline orchestrated from Hermes.
+Chess Arena is a cinematic AI experiment: a full chess game rendered as a neon strategy battle, with language-model move proposals, a central legality referee, generated commentary, synthetic music, and an automated video pipeline orchestrated from Hermes.
 
 The project began as a simple idea: make an LLM play chess visibly, without hiding the hard parts. The final system is not just a chess board and not just a video render. It is a complete benchmark-showcase pipeline where model reasoning, rule discipline, tactical pressure, arbitration, narration, and production tooling are all exposed as part of the performance.
 
@@ -99,13 +99,13 @@ python render_highlight_reel.py \
 
 ## Visual design
 
-The visual language evolved from a terminal demo into a hybrid ASCII/game-art arena:
+The visual language evolved from a terminal demo into a hybrid terminal/game-art arena:
 
 - 1280×720 MP4 output,
 - brown chess-board squares for piece readability,
 - solid black and white pieces,
 - a green-neon research-lab / underground terminal HUD,
-- true ASCII/protocol text in the model/referee stream,
+- terminal/protocol text in the model/referee stream,
 - particle-driven capture impacts,
 - red king-targeting animations for check,
 - an intro card and final explanatory scene.
