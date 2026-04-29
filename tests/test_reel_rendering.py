@@ -1,3 +1,5 @@
+import json
+import tempfile
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
@@ -123,24 +125,38 @@ class ReelRenderingTests(unittest.TestCase):
         self.assertIn("board-ascii after", joined)
 
     def test_voice_bank_tts_backend_maps_events_to_qwen_sample_files(self):
-        with self.subTest("real qwen bank exists"):
-            bank = Path("assets/voice_bank/generated/qwen_ryan_broadcast_hype")
-            self.assertTrue((bank / "generated_index.json").exists())
-
-        event = SimpleNamespace(
-            moved_piece=chess.Piece(chess.KNIGHT, chess.BLACK),
-            side="Black",
-            ply=7,
-            san="Nxc7+",
-            commentary="unused",
-        )
-        segments = reel.make_tts_segments(
-            [event],
-            Path("/tmp"),
-            backend="voice-bank",
-            external_dir=Path("assets/voice_bank/generated/qwen_ryan_broadcast_hype"),
-            voice_label="Qwen Ryan Broadcast Hype",
-        )
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            bank = root / "voice_bank"
+            (bank / "atoms").mkdir(parents=True)
+            (bank / "phrases" / "knight").mkdir(parents=True)
+            samples = {
+                "black_possessive": "atoms/black_possessive.ogg",
+                "piece_knight": "atoms/piece_knight.ogg",
+                "phrase_041_knight": "phrases/knight/phrase_041.ogg",
+            }
+            for relpath in samples.values():
+                (bank / relpath).write_bytes(b"ogg")
+            (bank / "generated_index.json").write_text(
+                json.dumps([{"id": sample_id, "relpath": relpath} for sample_id, relpath in samples.items()]),
+                encoding="utf-8",
+            )
+            work = root / "work"
+            work.mkdir()
+            event = SimpleNamespace(
+                moved_piece=chess.Piece(chess.KNIGHT, chess.BLACK),
+                side="Black",
+                ply=7,
+                san="Nxc7+",
+                commentary="unused",
+            )
+            segments = reel.make_tts_segments(
+                [event],
+                work,
+                backend="voice-bank",
+                external_dir=bank,
+                voice_label="Qwen Ryan Broadcast Hype",
+            )
         paths = [path for path, _ in segments]
         self.assertTrue(any("black_possessive.ogg" in str(path) for path in paths))
         self.assertTrue(any("piece_knight.ogg" in str(path) for path in paths))
