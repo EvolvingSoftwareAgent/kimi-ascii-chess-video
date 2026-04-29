@@ -443,13 +443,13 @@ class TerminalMatch:
         if self.last_raw:
             meta.append(f'Raw chooser output: {self.last_raw[:180]}', style='bright_black')
         return Group(
-            Panel(body, title='Chess Arena // RAW LANGUAGE INTELLIGENCE VS CLASSICAL SEARCH', border_style='bright_blue'),
+            Panel(body, title='Gambit Arena // RAW LANGUAGE INTELLIGENCE VS CLASSICAL SEARCH', border_style='bright_blue'),
             Panel(meta, title='Match Telemetry / Referee Bus', border_style='bright_magenta'),
         )
 
     def title_card(self) -> Group:
         title = Text()
-        title.append('\n  CHESS ARENA\n', style=TITLE_STYLE)
+        title.append('\n  GAMBIT ARENA\n', style=TITLE_STYLE)
         title.append('  RAW LANGUAGE INTELLIGENCE ENTERS THE ARENA\n\n', style='bold bright_white')
         title.append(f'  {self.llm_player.name}  ', style='bold bright_cyan')
         title.append('VS', style='bold bright_yellow')
@@ -572,7 +572,7 @@ def build_players(args: argparse.Namespace) -> tuple[PlayerAdapter, PlayerAdapte
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description='Chess Arena: LLM vs classical engine')
+    parser = argparse.ArgumentParser(description='Gambit Arena: LLM vs classical engine')
     parser.add_argument('--llm-mode', choices=['kimi', 'random'], default='random')
     parser.add_argument('--llm-name', default='LLM')
     parser.add_argument('--engine-name', default='Stockfish')

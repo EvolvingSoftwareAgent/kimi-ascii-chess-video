@@ -8,12 +8,12 @@ import render_highlight_reel as reel
 
 
 class TTSBackendTests(unittest.TestCase):
-    def test_narration_lines_use_chess_arena_script(self):
+    def test_narration_lines_use_gambit_arena_script(self):
         event = SimpleNamespace(commentary="The queen cuts through the grid.")
 
         lines = reel.build_narration_lines([event], voice_label="premium cinematic voice")
 
-        self.assertIn("Chess Arena", lines[0])
+        self.assertIn("Gambit Arena", lines[0])
         self.assertIn("LLMs playing chess", lines[0])
         self.assertNotIn("Piper", lines[0])
         self.assertEqual(lines[1], "The queen cuts through the grid.")
@@ -59,7 +59,7 @@ class TTSBackendTests(unittest.TestCase):
                 return {"duration_seconds": 2.2, "rms": 0.08, "peak": 0.5, "leading_silence_seconds": 0.05, "trailing_silence_seconds": 0.1}
 
             segments = reel.make_qwen_local_tts_segments(
-                ["Welcome to Chess Arena.", "The queen lights the board."],
+                ["Welcome to Gambit Arena.", "The queen lights the board."],
                 work,
                 render_line=fake_render,
                 speaker="ryan",
@@ -69,11 +69,11 @@ class TTSBackendTests(unittest.TestCase):
 
             self.assertEqual([path.name for path, _ in segments], ["qwen_voice_00.wav", "qwen_voice_01.wav"])
             self.assertEqual([slot for _path, slot in segments], [0, 1])
-            self.assertEqual(calls[0][0], "Welcome to Chess Arena.")
+            self.assertEqual(calls[0][0], "Welcome to Gambit Arena.")
             self.assertIn("cinematic sports broadcast", calls[0][3])
             metadata = (work / "qwen_local_tts_manifest.json").read_text(encoding="utf-8")
             self.assertIn("Qwen/test", metadata)
-            self.assertIn("Welcome to Chess Arena", metadata)
+            self.assertIn("Welcome to Gambit Arena", metadata)
 
     def test_qwen_local_backend_rejects_drawn_out_or_silent_clips(self):
         with tempfile.TemporaryDirectory() as tmp:

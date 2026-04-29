@@ -6,12 +6,12 @@ import render_highlight_reel as reel
 from terminal_chess_demo import OpenAICompatibleLLMPlayer
 
 
-class ChessArenaStyleTests(unittest.TestCase):
-    def test_branding_uses_chess_arena_and_explains_benchmark(self):
-        self.assertEqual(reel.project_title_text(), "CHESS ARENA")
+class GambitArenaStyleTests(unittest.TestCase):
+    def test_branding_uses_gambit_arena_and_explains_benchmark(self):
+        self.assertEqual(reel.project_title_text(), "GAMBIT ARENA")
         lines = reel.build_narration_lines([], voice_label="scripted narration")
         joined = "\n".join(lines)
-        self.assertIn("Chess Arena", joined)
+        self.assertIn("Gambit Arena", joined)
         self.assertIn("LLMs playing chess", joined)
         self.assertIn("benchmark", joined.lower())
         self.assertIn("rule discipline", joined.lower())

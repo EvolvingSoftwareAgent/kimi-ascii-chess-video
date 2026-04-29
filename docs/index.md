@@ -1,12 +1,12 @@
-# Chess Arena: A Cinematic LLM Chess Benchmark
+# Gambit Arena: A Cinematic LLM Chess Benchmark
 
-Chess Arena is a cinematic AI experiment: a full chess game rendered as a neon strategy battle, with language-model move proposals, a central legality referee, generated commentary, synthetic music, and an automated video pipeline orchestrated from Hermes.
+Gambit Arena is a cinematic AI experiment: a full chess game rendered as a neon strategy battle, with language-model move proposals, a central legality referee, generated commentary, synthetic music, and an automated video pipeline orchestrated from Hermes.
 
 The project began as a simple idea: make an LLM play chess visibly, without hiding the hard parts. The final system is not just a chess board and not just a video render. It is a complete benchmark-showcase pipeline where model reasoning, rule discipline, tactical pressure, arbitration, narration, and production tooling are all exposed as part of the performance.
 
 ## The core idea
 
-Chess is useful because it is unforgiving. A model can sound strategic in prose, but chess asks for one legal move from one exact position. Chess Arena turns that constraint into a visual benchmark:
+Chess is useful because it is unforgiving. A model can sound strategic in prose, but chess asks for one legal move from one exact position. Gambit Arena turns that constraint into a visual benchmark:
 
 - Can a language model maintain board state?
 - Can it propose a legal move without engine help?
@@ -18,7 +18,7 @@ The video presents that benchmark as an arena. The left side is the board. The r
 
 ## System architecture
 
-Chess Arena is built around one strict rule: players propose moves, but the arena owns the truth.
+Gambit Arena is built around one strict rule: players propose moves, but the arena owns the truth.
 
 ```text
 White seat / Black seat
@@ -94,7 +94,7 @@ python render_highlight_reel.py \
   --seed 184 \
   --tts-backend qwen-local \
   --voice-label 'local Qwen3-TTS 1.7B Ryan full-line narration' \
-  --out outputs/chess_arena_full_game_qwen_local_1_7b_seed184.mp4
+  --out outputs/gambit_arena_full_game_qwen_local_1_7b_seed184.mp4
 ```
 
 ## Visual design
@@ -170,7 +170,7 @@ The narration is intentionally sparse. The video is not a move-by-move lecture. 
 
 The copy avoids dense chess notation in viewer-facing narration. Instead of speaking raw SAN such as `Qe6+`, the video describes what the viewer can understand immediately: side, piece, action, victim, and referee verdict.
 
-The final explanatory beat frames Chess Arena as a system test of planning, tactics, rule discipline, recovery, and central adjudication.
+The final explanatory beat frames Gambit Arena as a system test of planning, tactics, rule discipline, recovery, and central adjudication.
 
 ## Music creation
 
@@ -226,15 +226,15 @@ Representative verification commands:
 
 ```bash
 python -m py_compile render_highlight_reel.py terminal_chess_demo.py
-python -m unittest tests.test_reel_rendering tests.test_tts_backends tests.test_chess_arena_style -v
-ffprobe -v error -show_entries format=duration,size -of default=nw=1:nk=1 outputs/chess_arena_full_game_qwen_local_1_7b_seed184.mp4
+python -m unittest tests.test_reel_rendering tests.test_tts_backends tests.test_gambit_arena_style -v
+ffprobe -v error -show_entries format=duration,size -of default=nw=1:nk=1 outputs/gambit_arena_full_game_qwen_local_1_7b_seed184.mp4
 ```
 
 ## Why it matters
 
-Chess Arena is a benchmark wrapped in a spectacle.
+Gambit Arena is a benchmark wrapped in a spectacle.
 
-A normal benchmark compresses a model into a score. Chess Arena keeps the score, but also shows the behavior: the proposed move, the referee decision, the tactical pressure, the recovery path, and the final consequence on the board.
+A normal benchmark compresses a model into a score. Gambit Arena keeps the score, but also shows the behavior: the proposed move, the referee decision, the tactical pressure, the recovery path, and the final consequence on the board.
 
 It is a way to make LLM chess less abstract. Instead of saying a model can or cannot reason, the system puts the model in a rules-bound arena and makes every decision visible.
 

@@ -52,7 +52,7 @@ PIECE_NAME = {
     chess.PAWN: 'pawn', chess.KNIGHT: 'knight', chess.BISHOP: 'bishop', chess.ROOK: 'rook', chess.QUEEN: 'queen', chess.KING: 'king'
 }
 ASCII_RAMP = ' .:-=+*#%@'
-PROJECT_TITLE = 'CHESS ARENA'
+PROJECT_TITLE = 'GAMBIT ARENA'
 MATCHUP_TITLE = 'WHITE VS BLACK'
 MATCHUP_HUD = 'WHITE VS BLACK // LLM BENCHMARK ARENA'
 PIECE_ASCII_ART = {
@@ -116,7 +116,7 @@ def piece_ascii_art(piece: chess.Piece) -> str:
 
 def final_explanation_lines() -> list[str]:
     return [
-        'Chess Arena is a visual benchmark for LLMs playing chess.',
+        'Gambit Arena is a visual benchmark for LLMs playing chess.',
         'Each model proposes its own move from the current position.',
         'A central referee checks legality after the move is proposed and rejects illegal play.'
         'The arena turns the game into an observable test of planning, tactics, and rule following.',
@@ -1031,8 +1031,8 @@ def render_video(events: list[GameEvent], out_video: Path, work: Path, mode: str
 
 
 def build_narration_lines(events: list[GameEvent], voice_label: str = 'local Piper narration') -> list[str]:
-    intro = 'Welcome to Chess Arena: LLMs playing chess as a benchmark. Each model proposes a move, the referee checks it, and the full game becomes visible.'
-    finale = 'Chess Arena is a system test: planning, tactics, rule discipline, recovery, and one central referee.'
+    intro = 'Welcome to Gambit Arena: LLMs playing chess as a benchmark. Each model proposes a move, the referee checks it, and the full game becomes visible.'
+    finale = 'Gambit Arena is a system test: planning, tactics, rule discipline, recovery, and one central referee.'
     return [intro] + [e.commentary for e in events] + [finale]
 
 
@@ -1079,7 +1079,7 @@ def make_edge_tts_segments(lines: list[str], work: Path, voice: str = 'en-US-Guy
 
 QWEN_LOCAL_DEFAULT_CHECKPOINT = 'Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice'
 QWEN_LOCAL_DEFAULT_SPEAKER = 'ryan'
-QWEN_LOCAL_DEFAULT_INSTRUCT = 'High-energy cinematic sports broadcaster. Clear, confident, punchy Chess Arena narration. No moaning, no drawn-out words.'
+QWEN_LOCAL_DEFAULT_INSTRUCT = 'High-energy cinematic sports broadcaster. Clear, confident, punchy Gambit Arena narration. No moaning, no drawn-out words.'
 _QWEN_LOCAL_MODEL_CACHE = {}
 
 
