@@ -1,37 +1,43 @@
 # Gambit Arena
 
-**Gambit Arena** is a cinematic LLM chess benchmark and automated video-production pipeline built for the **Hermes Agent Creative Hackathon**, presented by [Kimi.ai](https://x.com/Kimi_Moonshot) and [Nous Research](https://x.com/NousResearch).
+**Gambit Arena** turns LLM chess into something you can watch, audit, and feel.
 
-The hackathon brief asks builders to push Hermes Agent into creative domains: video, image, audio, 3D, long-form writing, creative software, interactive media, and more. Gambit Arena answers that brief with a complete AI chess film system: model move generation, central legality adjudication, event-driven video editing, generated narration, procedural music, and final MP4 assembly orchestrated through Hermes.
+It is a rules-bound arena where language-model players propose chess moves, a central referee enforces legality, and every accepted move becomes part of a cinematic event stream. The same system that plays the game also produces the film: board animation, model/referee telemetry, tactical effects, generated narration, procedural music, and final MP4 assembly.
 
-The project turns a chess game into a visible benchmark. Instead of hiding the hard parts in logs, the video shows the board, the model/referee stream, tactical pressure, legal-move discipline, captures, checks, checkmate, narration, and soundtrack as one coherent arena.
-
-Project page: https://evolvingsoftwareagent.github.io/gambit-arena/
+Most AI benchmarks compress behavior into a number. Gambit Arena keeps the rigor, but exposes the behavior: the proposed move, the validation step, the tactical pressure, the recovery path, and the consequence on the board.
 
 Repository: https://github.com/EvolvingSoftwareAgent/gambit-arena
 
-## What it is
+## The idea
 
-Gambit Arena is both:
+Chess is a hard test for language models because it leaves almost no room for vibes.
 
-1. **An LLM chess benchmark** — language-model player seats propose moves from board state and history while a central controller owns the truth.
-2. **A generative video pipeline** — structured chess events become an edited 1280×720 cinematic video with speed ramps, visual effects, narration, and music.
+A model can sound strategic in prose, but in chess it has to produce one move from one exact position. That move must be legal. It must fit the board state. It must survive tactical pressure. If the model loses track, the failure is immediate and visible.
 
-Chess is useful because it is unforgiving. A model can sound strategic in prose, but chess asks for one legal move from one exact position. Gambit Arena turns that constraint into a filmable system test:
+Gambit Arena uses that constraint as the foundation for a full creative system:
 
-- Can a model track board state?
-- Can it propose a legal move without receiving a hidden legal-move list?
-- Can it recover when output is malformed?
-- Can it keep planning while tactical pressure increases?
-- Can the system make those moments observable instead of burying them?
+1. **Benchmark the model** — can it track state, respect rules, and recover from malformed output?
+2. **Expose the process** — show the model/referee loop instead of burying it in logs.
+3. **Render the drama** — transform structured game events into a watchable AI chess film.
 
-The result is a benchmark wrapped in spectacle: every accepted move becomes data, every important tactical event becomes a scene, and the final video explains how the system works as it plays.
+The result is not just “an AI played chess.” It is a machine-room broadcast of reasoning under rules.
 
-## How the app works
+## What it does
+
+Gambit Arena combines four layers:
+
+- **Game layer** — player seats propose moves; the referee owns the canonical board.
+- **Benchmark layer** — legality, retries, malformed output, tactical events, and final outcomes are recorded.
+- **Show layer** — moves become scenes with timing, captions, ASCII board traces, capture effects, check effects, and final explanation beats.
+- **Media layer** — narration, music, video frames, and final muxing are generated as reproducible artifacts.
+
+That makes it useful both as a benchmark harness and as a generative media pipeline.
+
+## How the arena works
 
 Gambit Arena is built around one strict rule:
 
-**Players propose moves, but the arena owns the truth.**
+**Players propose moves. The arena owns the truth.**
 
 ```text
 White seat / Black seat
@@ -63,7 +69,9 @@ The player seats are interchangeable. A seat can be backed by:
 - a deterministic mock/random-legal adapter for repeatable pipeline tests,
 - or a human input adapter.
 
-The controller is the important middle layer. It stores the canonical board, validates moves through `python-chess`, records every accepted move, and emits structured events for the renderer. The move generator does not get to mutate the board directly. That separation keeps the benchmark fair and keeps the cinematic layer from contaminating the game logic.
+The controller is the load-bearing part. It stores the canonical board, validates moves through `python-chess`, records accepted moves, and emits structured events for the renderer. The move generator never mutates the board directly.
+
+That separation keeps the benchmark fair. It also keeps the cinematic layer honest: the video is driven by the official game record, not by hand-authored drama.
 
 ## No-tools LLM play
 
@@ -78,13 +86,13 @@ The adapter supports strict parsing and recovery:
 - retry malformed output within a budget,
 - record recovery behavior as benchmark data.
 
-That means model behavior becomes visible and measurable. The system can show when a model follows rules, repairs itself, creates pressure, or needs fallback arbitration.
+This makes model behavior observable. The system can show when a model follows the rules, repairs itself, creates pressure, or needs fallback arbitration.
 
-## From game events to video scenes
+## From chess events to scenes
 
 The controller emits a timeline of `GameEvent` objects. Each event contains the ply number, side, SAN/UCI move, board before/after, moved piece, captured piece, event kind, caption, commentary, and score context.
 
-The renderer treats those events as an edit decision list for the final film:
+The renderer treats those events as an edit decision list:
 
 - ordinary move,
 - capture,
@@ -94,32 +102,19 @@ The renderer treats those events as an edit decision list for the final film:
 - adapter/referee note,
 - final explanation scene.
 
-Each event receives cinematic importance. Ordinary moves become fast montage flashes. Captures, checks, and underdog swings slow down into combat beats. Checkmate receives the longest lockdown moment.
+Ordinary moves become fast montage beats. Captures, checks, and tactical swings slow down into combat moments. Checkmate becomes a locked final state rather than just another move.
 
-The full-game mode keeps every move in order rather than cutting only to highlights. The viewer sees the whole game unfold, but the timing still feels edited: fast where the position is developing, slow where the board explodes.
+The full-game mode keeps every move in order. The viewer sees the whole game unfold, but the timing still feels edited: fast where the position is developing, slow where the board explodes.
 
-Current full-game render command:
-
-```bash
-python render_highlight_reel.py \
-  --mode full-game \
-  --duration 90 \
-  --max-plies 74 \
-  --seed 184 \
-  --tts-backend qwen-local \
-  --voice-label 'local Qwen3-TTS 1.7B Ryan full-line narration' \
-  --out outputs/gambit_arena_full_game_qwen_local_1_7b_seed184.mp4
-```
-
-## Video editing process
+## Video production pipeline
 
 The video is not edited manually in a timeline editor. The Python renderer performs the edit from structured game data.
 
 The production pipeline is:
 
-1. **Simulate or play the game** — generate accepted moves and board states.
+1. **Play or simulate the game** — generate accepted moves and board states.
 2. **Classify events** — identify ordinary moves, captures, checks, underdog captures, and checkmate.
-3. **Build a full-game timeline** — assign each ply a start time, duration, label, and importance score.
+3. **Build the timeline** — assign each ply a start time, duration, label, and importance score.
 4. **Render the silent film** — stream RGB frames into `ffmpeg` as raw video.
 5. **Generate narration** — write a commentary script and render full-line voice clips.
 6. **Schedule voice clips** — place narration near the event it explains while avoiding overlap.
@@ -133,7 +128,7 @@ The renderer writes audit artifacts under `outputs/full_game_work/`:
 - `silent_reel.mp4` — video-only render,
 - `synthetic_music.wav` — generated soundtrack,
 - `commentary_script.txt` — exact narration script,
-- `qwen_voice_XX.wav` — generated narration clips,
+- generated narration clips,
 - `commentary.wav` — mixed narration stem,
 - `ffmpeg_video.log` — raw frame encode log,
 - `ffmpeg_voice_mix.log` — narration-mix log,
@@ -141,9 +136,9 @@ The renderer writes audit artifacts under `outputs/full_game_work/`:
 - `full_game_manifest.txt` — timeline/edit manifest,
 - preview frames for visual review.
 
-This makes the video reproducible. If a frame, voice line, timing beat, or audio level needs review, the intermediate artifact exists.
+The important property is reproducibility. If a frame, voice line, timing beat, or audio level needs review, the intermediate artifact exists.
 
-## Visual design
+## Visual direction
 
 The visual language is a hybrid of chessboard, terminal UI, and underground AI lab:
 
@@ -159,7 +154,7 @@ The visual language is a hybrid of chessboard, terminal UI, and underground AI l
 - title card,
 - final explanatory system scene.
 
-The design goal is not to imitate a normal chess broadcast. It makes reasoning, legality, and tactical pressure feel like a machine-room sport.
+The design goal is not to imitate a normal chess broadcast. Gambit Arena makes reasoning, legality, and tactical pressure feel like a machine-room sport.
 
 ## Capture and check effects
 
@@ -172,7 +167,7 @@ Captures are not a single generic explosion. Each piece type has its own impact 
 - queens create vortex effects,
 - kings create compression waves.
 
-Checks are treated differently from captures. The king becomes the target. The board shifts into alarm mode, red targeting graphics appear, and the referee stream marks the threat. Checkmate becomes a locked final state rather than just another move.
+Checks are treated differently from captures. The king becomes the target. The board shifts into alarm mode, red targeting graphics appear, and the referee stream marks the threat. Checkmate becomes a locked final state.
 
 ## Narration
 
@@ -193,28 +188,6 @@ Example style:
 - “Black queen seals the king. No doors remain; the referee confirms checkmate.”
 
 The final explanatory beat frames Gambit Arena as a system test of planning, tactics, rule discipline, recovery, and central adjudication.
-
-## Voice generation
-
-The audio pipeline supports multiple TTS backends:
-
-- local Piper draft narration,
-- Edge neural draft narration,
-- external pre-rendered clips,
-- reusable voice-bank samples,
-- local Qwen3-TTS full-line narration.
-
-For the final direction, the production path uses full-line narration. Each commentary line is generated as a complete performance so timing, cadence, and emphasis stay coherent.
-
-The preferred final local voice path is:
-
-- backend: `qwen-local`,
-- model: `Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice`,
-- voice: Ryan,
-- mode: full-line narration,
-- validation: duration, loudness, leading/trailing silence, and empty-file checks.
-
-The renderer writes a commentary script, generates narration lines, checks clip quality, schedules them against the timeline, and mixes them into a single commentary stem.
 
 ## Music creation
 
@@ -243,72 +216,22 @@ gambit_arena_full_game_qwen_local_1_7b_seed184.mp4
 
 The final mix uses `ffmpeg` filters to lower the music bed, raise the voice stem, combine both audio streams, encode AAC, and keep the video stream intact.
 
-## Hermes orchestration
+## Agentic build loop
 
-Hermes acted as the project conductor. It coordinated the build as tool-using agent sessions rather than a single manual script run.
+Gambit Arena was built through an agentic software-and-media workflow. Hermes coordinated code changes, tests, rendering commands, long-running media jobs, artifact checks, and visual review from the same environment.
 
-Hermes was used to:
+That matters because this project is not a single prompt output. It is a working loop:
 
-- inspect and modify the codebase,
-- design the controller/referee architecture,
-- harden the LLM move parser,
-- add event scoring and timeline generation,
-- run focused tests and syntax checks,
-- generate and audition voice samples,
-- launch long-running TTS jobs,
-- monitor generated audio and logs,
+- inspect the codebase,
+- modify the controller or renderer,
+- run focused tests,
 - render smoke-test videos,
-- extract verification frames,
-- inspect final frames for visual regressions,
-- verify streams with `ffmpeg` and `ffprobe`,
-- iterate from prototype to publishable cut.
+- inspect generated frames and media logs,
+- revise timing, visual language, narration, or audio,
+- render again,
+- verify final streams and artifacts.
 
-The important part is that Hermes executed the creative pipeline: code edits, tests, rendering commands, media checks, and artifact review all happened through the same agent environment.
-
-## Hackathon fit
-
-Gambit Arena fits the Hermes Agent Creative Hackathon brief because it combines multiple creative domains in one working system:
-
-- **Video** — event-driven cinematic rendering and automated MP4 assembly.
-- **Audio** — generated narration, voice scheduling, procedural soundtrack, and mixdown.
-- **Creative software** — a reusable pipeline that turns structured game events into finished media.
-- **Interactive media** — a chess-controller architecture that can support LLM, engine, and human seats.
-- **Long-form explanation** — the final README and project page document how the system works and how the video was made.
-- **Agentic production** — Hermes orchestrates the coding, rendering, verification, and media iteration loop.
-
-The entry is not just a video made with an AI tool. It is a system for making AI behavior visible as cinema.
-
-## Kimi ideas to explore next
-
-The hackathon is presented by Kimi and Nous, and Gambit Arena is a natural place to bring Kimi deeper into the system. Good next directions:
-
-### 1. Kimi as a player seat
-
-Use Kimi as the White or Black adapter through an OpenAI-compatible endpoint. The benchmark can compare Kimi against Stockfish, another LLM, or a human seat while the referee keeps the rules consistent.
-
-This is the cleanest integration because the architecture already supports interchangeable player seats.
-
-### 2. Kimi as the commentator
-
-Feed Kimi the structured event manifest after the game and ask it to produce short broadcast lines for selected beats: captures, checks, momentum swings, and final explanation. The renderer can still enforce timing and narration length.
-
-This keeps game play and commentary separate: Kimi can be creative after the referee has already produced the official timeline.
-
-### 3. Kimi as the post-game analyst
-
-Use Kimi to generate a human-readable match report from `full_game_manifest.txt`: key moments, turning points, why the checkmate happened, and which model behaviors looked strong or fragile.
-
-That report could become a companion article or be displayed as a final credits card.
-
-### 4. Kimi as the trailer editor
-
-Give Kimi the list of events, scores, and available scene types, then ask it to choose a trailer cut: which beats to slow down, which captures to emphasize, and where narration should land. The renderer would execute the edit decisions deterministically.
-
-This would turn Kimi into a creative director without letting it break media validity.
-
-### 5. Kimi vs Nous exhibition mode
-
-A hackathon-themed cut could seat Kimi on one side and a Nous model on the other, with the same central referee and the same video pipeline. The video would become both a benchmark and a sponsor-themed exhibition match.
+The system gets better because the creative pipeline is testable.
 
 ## Tooling stack
 
@@ -328,15 +251,13 @@ Project scripts:
 - `terminal_chess_demo.py` — live terminal prototype and chess-controller experiment.
 - `render_highlight_reel.py` — full-game speed-ramped renderer and final MP4 pipeline.
 - `scripts/build_voice_bank_manifest.py` — reusable chess voice-bank manifest generator.
-- `scripts/generate_voice_bank.py` — Edge/Qwen voice sample generator with resume and retry behavior.
+- `scripts/generate_voice_bank.py` — voice sample generator with resume and retry behavior.
 - `scripts/probe_qwen_tts_cpu_render.py` — local CPU TTS proof-of-life tool.
 
 ## Key files
 
 ```text
-README.md                         Hackathon/project entry and build explanation
-docs/gambit-arena.md              GitHub Pages project page
-docs/index.md                     GitHub Pages index
+README.md                         Project overview and build explanation
 render_highlight_reel.py          Full-game video renderer and audio pipeline
 terminal_chess_demo.py            Terminal chess prototype/controller
 scripts/build_voice_bank_manifest.py
@@ -379,8 +300,8 @@ The system is tested at several levels:
 
 ## Why it matters
 
-A normal benchmark compresses a model into a score. Gambit Arena keeps the score, but also shows the behavior: the proposed move, the referee decision, the tactical pressure, the recovery path, and the final consequence on the board.
+A normal benchmark compresses a model into a score. Gambit Arena keeps the discipline of a benchmark, but makes the behavior legible: move proposal, referee decision, tactical pressure, recovery path, and final consequence.
 
-It makes LLM chess less abstract. Instead of only saying a model can or cannot reason, the system puts the model in a rules-bound arena and makes every decision visible.
+That changes how model capability feels. Instead of asking people to trust a result table, Gambit Arena puts the model inside a rules-bound arena and lets the audience watch every decision become reality.
 
-That is the full system: LLM move generation, central adjudication, event-driven rendering, generated narration, procedural music, automated media assembly, and Hermes-orchestrated iteration — all combined into one terminal-native AI chess film.
+That is the full system: LLM move generation, central adjudication, event-driven rendering, generated narration, procedural music, automated media assembly, and agentic iteration — all combined into one terminal-native AI chess film.
