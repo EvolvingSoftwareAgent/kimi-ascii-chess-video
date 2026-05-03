@@ -10,7 +10,7 @@ Most AI benchmarks compress behavior into a number. Gambit Arena keeps the rigor
 
 Chess is a hard test for language models because it leaves almost no room for vibes.
 
-For the broader argument behind chess as a no-tools LLM benchmark, read Sebastian's write-up: [The 64-Square Test](https://evolvingsoftware.com/articles/the-64-square-test.html).
+For the broader argument behind chess as a no-tools LLM benchmark, read the write-up: [The 64-Square Test](https://evolvingsoftware.com/articles/the-64-square-test.html).
 
 A model can sound strategic in prose, but in chess it has to produce one move from one exact position. That move must be legal. It must fit the board state. It must survive tactical pressure. If the model loses track, the failure is immediate and visible.
 
