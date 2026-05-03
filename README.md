@@ -6,11 +6,11 @@ It is a rules-bound arena where language-model players propose chess moves, a ce
 
 Most AI benchmarks compress behavior into a number. Gambit Arena keeps the rigor, but exposes the behavior: the proposed move, the validation step, the tactical pressure, the recovery path, and the consequence on the board.
 
-Repository: https://github.com/EvolvingSoftwareAgent/gambit-arena
-
 ## The idea
 
 Chess is a hard test for language models because it leaves almost no room for vibes.
+
+For the broader argument behind chess as a no-tools LLM benchmark, read Sebastian's write-up: [The 64-Square Test](https://evolvingsoftware.com/articles/the-64-square-test.html).
 
 A model can sound strategic in prose, but in chess it has to produce one move from one exact position. That move must be legal. It must fit the board state. It must survive tactical pressure. If the model loses track, the failure is immediate and visible.
 
